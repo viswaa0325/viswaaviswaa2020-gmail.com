@@ -1,0 +1,53 @@
+```{r}
+library(tidyverse)
+library(ggcorrplot)
+data <- read.csv(electricity_bill_dataset)
+str(electricity_bill_dataset)
+head(electricity_bill_dataset)
+summary(electricity_bill_dataset)
+```
+
+```{r}
+missing_values <- colSums(is.na(electricity_bill_dataset))
+missing_values
+```
+```{r}
+data_clean <- na.omit(electricity_bill_dataset)
+```
+
+```{r}
+# Visualize the data
+# Histogram for numerical variables
+num_vars <- sapply(electricity_bill_dataset, is.numeric)
+num_data <- electricity_bill_dataset[, num_vars]
+```
+
+```{r}
+# boxplot
+ggplot(electricity_bill_dataset, aes(x =Television, y =Refrigerator)) +
+  geom_boxplot(fill = "orange", color = "black") +
+  theme_minimal() +
+  labs(title = "Boxplot of Humidity by Season", x= "television", y= "refrigerator")
+```
+
+```{r}
+# Scatter plot to show the relationship between two numeric variables (replace 'temp' and 'humidity' with appropriate column names)
+ggplot(electricity_bill_dataset, aes(x = Television, y = Refrigerator)) +
+  geom_point(color = "red") +
+  theme_minimal() +
+  labs(title = "Scatter Plot of television vs refrigerator", x = "television", y = "refrigerator")
+```
+```{r}
+# Time series plot for a variable over time (replace 'date' and 'temp' with appropriate column names)
+ggplot(electricity_bill_dataset, aes(x = Television, y = Refrigerator)) +
+  geom_line(color = "") +
+  theme_minimal() +
+  labs(title = "Time Series of electricity", x = "television", y = "refrigerator")
+```
+```{r}
+# Time series plot for a variable over time (replace 'date' and 'temp' with appropriate column names)
+ggplot(electricity_bill_dataset, aes(x = Television , y = Refrigerator)) +
+  geom_line(color = "yellow") +
+  theme_minimal() +
+  labs(title = "Time Series of Temperature", x = "television", y = "refrigerator")
+```
